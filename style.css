@@ -1,0 +1,225 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f0f0f0;
+  color: #333;
+}
+
+.navbar {
+  background-color: #2196f3;
+  padding: 10px 20px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.navbar a,
+.navbar button {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar button:hover {
+  background-color: #0b7dda;
+}
+
+.deposit-section {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 20px auto 10px auto;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.game {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 20px auto 10px auto;
+  text-align: center;
+}
+
+.choice-buttons {
+  margin: 20px 0;
+}
+
+.choice-btn {
+  min-width: 80px;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #2196f3;
+  background-color: white;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.choice-btn:hover {
+  background-color: #2196f3;
+  color: white;
+}
+
+.choice-btn.selected {
+  background-color: #4caf50;
+  color: white;
+  border-color: #4caf50;
+}
+
+.bet-section {
+  margin-top: 15px;
+}
+
+#betAmount,#addAmount {
+  width: 150px;
+  padding: 8px;
+  font-size: 1rem;
+  margin-right: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  padding: 9px 18px;
+  cursor: pointer;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #0b7dda;
+}
+
+#resultMsg {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.login-container {
+  max-width: 450px;
+  margin: 100px auto;
+  padding: 50px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.login-container .btn {
+  width: 100%;
+  padding: 12px 12px;
+  background: #2196F3;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.login-container .btn:hover {
+  background: #1769aa;
+}
+
+.login-container a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+.quick-bet-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.quick-btn {
+  background-color: #2196f3;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.quick-btn:hover {
+  background-color: #1769aa;
+}
+
+.bet-section {
+  margin-top: 20px;
+  text-align: center;
+}
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.3; /* adjust to your liking */
+  pointer-events: none; /* so it doesn't block clicks */
+}
+
+.history-container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+#historyList table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#historyList th, #historyList td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: center;
+}
+
+#historyList th {
+  background-color: #f0f0f0;
+}
+#resultMsg {
+  white-space: pre-line;
+}
+#addAmount{
+    width: 200px;
+}

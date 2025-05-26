@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - OddEven Game</title>
+  <link rel="stylesheet" href="style.css" />
+      <link rel="icon" href="console.png">
+
+</head>
+<body>
+   <video autoplay muted loop id="bgVideo" playsinline>
+    <source src="4K_15.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
+  <div class="login-container">
+    <h2>Register</h2>
+    <input type="text" id="regUsername" placeholder="Username" />
+    <input type="password" id="regPassword" placeholder="Password" />
+    <input type="password" id="regPasswordConfirm" placeholder="Confirm Password" />
+    <button id="registerBtn" class="btn">Register</button>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+    <div id="registerMessage" style="margin-top:15px; font-weight:bold;"></div>
+  </div>
+
+  <script>
+    const registerBtn = document.getElementById('registerBtn');
+    const regUsername = document.getElementById('regUsername');
+    const regPassword = document.getElementById('regPassword');
+    const regPasswordConfirm = document.getElementById('regPasswordConfirm');
+    const registerMessage = document.getElementById('registerMessage');
+
+    registerBtn.addEventListener('click', () => {
+      const username = regUsername.value.trim();
+      const password = regPassword.value;
+      const passwordConfirm = regPasswordConfirm.value;
+
+      if (!username || !password || !passwordConfirm) {
+        registerMessage.style.color = 'red';
+        registerMessage.textContent = 'Please fill in all fields.';
+        return;
+      }
+
+      if (password !== passwordConfirm) {
+        registerMessage.style.color = 'red';
+        registerMessage.textContent = 'Passwords do not match.';
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users')) || {};
+      if (users[username]) {
+        registerMessage.style.color = 'red';
+        registerMessage.textContent = 'Username already taken.';
+        return;
+      }
+
+      users[username] = {
+        password: password,
+        balance: 0,
+        history: []
+      };
+
+      localStorage.setItem('users', JSON.stringify(users));
+      registerMessage.style.color = 'green';
+      registerMessage.textContent = 'Registration successful! Redirecting to login...';
+
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1500);
+    });
+  </script>
+</body>
+</html>

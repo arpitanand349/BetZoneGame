@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BetZone⚔️</title>
+  <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="console.png">
+</head>
+<body>
+    
+    <video autoplay muted loop id="bgVideo" playsinline>
+    <source src="4K_15.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
+
+
+  <header>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="addmoney.html">Add Money</a>
+      <a href="withdraw.html">Withdraw</a>
+      <a href="history.html">History</a>
+      <button id="logoutBtn">Logout</button>
+    </nav>
+  </header>
+
+  <div class="deposit-section">
+    <h2>Balance: ₹<span id="balance">0</span></h2>
+  </div>
+
+  <div class="game">
+    <h3>Choose Your Side</h3>
+    <div class="choice-buttons">
+      <button class="choice-btn" id="oddBtn">Odd</button>
+      <button class="choice-btn" id="evenBtn">Even</button>
+    </div>
+
+    <div class="bet-section">
+      <input
+        type="number"
+        id="betAmount"
+        placeholder="Enter bet amount"
+        min="1"
+      />
+      <button id="playBtn" class="btn">Play</button>
+        <!-- Quick Bet Buttons -->
+        <div class="quick-bet-container">
+            <button class="quick-btn" data-increment="10">+10</button>
+            <button class="quick-btn" data-increment="20">+20</button>
+            <button class="quick-btn" data-increment="50">+50</button>
+            <button class="quick-btn" data-increment="100">+100</button>
+        </div>
+    </div>
+
+    <div id="resultMsg"></div>
+  </div>
+
+  
+
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game History</title>
+  <link rel="stylesheet" href="style.css" />
+      <link rel="icon" href="console.png">
+
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bgVideo" playsinline>
+    <source src="4K_15.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="addmoney.html">Add Money</a>
+      <a href="withdraw.html">Withdraw</a>
+      <a href="history.html">History</a>
+      <button id="logoutBtn">Logout</button>
+    </nav>
+  </header>
+
+  <!-- History Content -->
+  <main class="history-container">
+    <h2>Game History</h2>
+    <div id="historyList">
+      <!-- Dynamic content will go here -->
+      <p>No history yet.</p>
+    </div>
+  </main>
+  
+</body>
+<script>
+  function loadHistory() {
+    const historyList = document.getElementById("historyList");
+    let history = JSON.parse(localStorage.getItem("gameHistory")) || [];
+
+    if (history.length === 0) {
+      historyList.innerHTML = "<p>No history yet.</p>";
+      return;
+    }
+
+    let html = '<table><thead><tr><th>Date & Time</th><th>Your Choice</th><th>Number</th><th>Bet</th><th>Result</th></tr></thead><tbody>';
+    history.forEach(entry => {
+      html += `<tr>
+        <td>${entry.timestamp}</td>
+        <td>${entry.choice}</td>
+        <td>${entry.generated}</td>
+        <td>₹${entry.bet}</td>
+        <td>${entry.outcome}</td>
+      </tr>`;
+    });
+    html += "</tbody></table>";
+    historyList.innerHTML = html;
+  }
+
+  window.onload = loadHistory;
+</script>
+
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - OddEven Game</title>
+  <link rel="stylesheet" href="style.css" />
+      <link rel="icon" href="console.png">
+
+</head>
+<body>
+   <video autoplay muted loop id="bgVideo" playsinline>
+    <source src="4K_15.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
+  <div class="login-container">
+    <h1>BetZone</h1>
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button id="loginBtn" class="btn">Login</button>
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+    <div id="loginMessage" style="margin-top:15px; font-weight:bold;"></div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const loginUsername = document.getElementById('loginUsername');
+    const loginPassword = document.getElementById('loginPassword');
+    const loginMessage = document.getElementById('loginMessage');
+
+    loginBtn.addEventListener('click', () => {
+      const username = loginUsername.value.trim();
+      const password = loginPassword.value;
+
+      if (!username || !password) {
+        loginMessage.style.color = 'red';
+        loginMessage.textContent = 'Please fill in all fields.';
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('users')) || {};
+      if (!users[username]) {
+        loginMessage.style.color = 'red';
+        loginMessage.textContent = 'User not found.';
+        return;
+      }
+      if (users[username].password !== password) {
+        loginMessage.style.color = 'red';
+        loginMessage.textContent = 'Incorrect password.';
+        return;
+      }
+
+      // Login success
+      localStorage.setItem('loggedInUser', username);
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

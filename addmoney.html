@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Money</title>
+  <link rel="stylesheet" href="style.css" />
+      <link rel="icon" href="console.png">
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+</head>
+<body>
+    <video autoplay muted loop id="bgVideo" playsinline>
+  <source src="4K_15.mp4" type="video/mp4" />
+  Your browser does not support HTML5 video.
+</video>
+  <header>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="addmoney.html">Add Money</a>
+      <a href="withdraw.html">Withdraw</a>
+      <a href="history.html">History</a>
+      <button id="logoutBtn">Logout</button>
+    </nav>
+  </header>
+
+  <div class="deposit-section">
+    <h2>Balance: ₹<span id="balance">0</span></h2>
+  </div>
+
+  <div class="game" style="max-width: 400px; margin: 20px auto;">
+    <h3>Add Money to Your Account</h3>
+    <input 
+      type="number"
+      id="addAmount"
+      placeholder="Enter amount to add"
+      min="1"
+    />
+    <button id="addMoneyBtn" class="btn" style="margin-left: 10px;">Add Money</button>
+    <div id="message" style="margin-top: 15px; font-weight: bold;"></div>
+  </div>
+
+  <script>
+    const balanceSpan = document.getElementById('balance');
+    const addAmountInput = document.getElementById('addAmount');
+    const addMoneyBtn = document.getElementById('addMoneyBtn');
+    const messageDiv = document.getElementById('message');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    let loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+      alert('Please login first.');
+      window.location.href = 'login.html';
+    }
+
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    if (!users[loggedInUser]) {
+      alert('User data not found.');
+      window.location.href = 'login.html';
+    }
+
+    function updateBalance() {
+      balanceSpan.textContent = users[loggedInUser].balance.toFixed(2);
+    }
+    updateBalance();
+addMoneyBtn.addEventListener('click', () => {
+  const amount = parseFloat(addAmountInput.value);
+  if (isNaN(amount) || amount <= 0) {
+    messageDiv.style.color = 'red';
+    messageDiv.textContent = 'Enter a valid amount.';
+    return;
+  }
+
+  const options = {
+    key: "rzp_test_myoWAU51HulVRo", // Replace with your test/live Razorpay key
+    amount: amount * 100, // Razorpay uses paise
+    currency: "INR",
+    name: "BetZone",
+    description: "Add Money to Wallet",
+    handler: function (response) {
+      // On successful payment, update balance
+      users[loggedInUser].balance += amount;
+      localStorage.setItem('users', JSON.stringify(users));
+      updateBalance();
+      messageDiv.style.color = 'green';
+      messageDiv.textContent = `₹${amount.toFixed(2)} added to your account.`;
+
+      addAmountInput.value = '';
+      console.log("Payment successful:", response);
+    },
+    prefill: {
+      name: loggedInUser,
+      email: "test@example.com",  // Optional
+      contact: "9999999999",      // Optional
+    },
+    theme: {
+      color: "#0077ff",
+    },
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+});
+
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('loggedInUser');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
